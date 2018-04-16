@@ -3,6 +3,7 @@ require_once "../inc/common.php";
 require_once "../inc/admin_header.php";
 ?>
 <h1>Система администрирования</h1>
+<p><a href="edit.php">Добавить новость</a></p>
 <table>
 <?
 $sql = "select *, date_format(`date_row`,'%d.%m.%Y') as datef from news order by `date_row` desc";
