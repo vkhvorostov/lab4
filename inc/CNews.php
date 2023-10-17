@@ -29,7 +29,7 @@ class CNews
      */
     public function printOne($newsId)
     {
-        $res = $this->mysqli->query("select * from news where id=$newsId");
+        $res = $this->mysqli->query("select *, date_format(`date_row`,'%d.%m.%Y') as datef from news where id=$newsId");
         $data = $res->fetch_assoc();
         $res->close();
         ?>
@@ -39,7 +39,7 @@ class CNews
             <div class="full-text"><?= nl2br($data['full_text']) ?></div>
             <div class="back-link"><a href="<?= $this->baseUrl ?>">Назад к списку новостей</a></div>
         </div>
-        <?
+        <?php
     }
 
     /**
@@ -50,7 +50,7 @@ class CNews
         $sql = "select *, date_format(`date_row`,'%d.%m.%Y') as datef from news where mode=0 order by `date_row` desc";
         $res = $this->mysqli->query($sql);
         ?>
-        <div class="news-list"><?
+        <div class="news-list"><?php
         while ($data = $res->fetch_assoc()) {
             ?>
             <div class="item">
@@ -58,9 +58,9 @@ class CNews
                 <div class="header"><a href="<?= $this->baseUrl . $data['id'] ?>/"><?= $data['header'] ?></a></div>
                 <div class="short-text"><?= $data['short_text'] ?></div>
             </div>
-            <?
+            <?php
         }
-        ?></div><?
+        ?></div><?php
         $res->close();
     }
 

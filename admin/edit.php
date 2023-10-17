@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once("../inc/common.php");
 
@@ -16,7 +16,7 @@ if (isset($_POST["save"])) {
 		$sql = "insert into news (header, date_row, short_text, full_text) values ('$header', '$date', '$anons', '$text')";
 		$mysqli->query($sql);
 	}
-	header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . dirname($_SERVER["PHP_SELF"]) . "/index.php");
+	header("Location: http://" . $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]) . "/index.php");
 	exit;
 }
 
@@ -34,18 +34,18 @@ if ($id) {
 	<form method="post" action="<?= $_SERVER["PHP_SELF"]?>">
 		<input type="hidden" name="id" value="<?= $id ?>">
 
-		<p>Заголовок:<br><input type="text" name="header" value="<? if (isset($data["header"])) echo htmlspecialchars($data["header"]) ?>">
+		<p>Заголовок:<br><input type="text" name="header" value="<?php if (isset($data["header"])) echo htmlspecialchars($data["header"]) ?>">
 
-		<p>Дата:<br><input type="text" name="date" value="<? if (isset($data["date_row"])) echo  htmlspecialchars($data["date_row"]) ?>">
+		<p>Дата:<br><input type="text" name="date" value="<?php if (isset($data["date_row"])) echo  htmlspecialchars($data["date_row"]) ?>">
 
-		<p>Анонс:<br><textarea name="anons" cols="60" rows="5"><? if (isset($data["short_text"])) echo  htmlspecialchars($data["short_text"]) ?></textarea>
+		<p>Анонс:<br><textarea name="anons" cols="60" rows="5"><?php if (isset($data["short_text"])) echo  htmlspecialchars($data["short_text"]) ?></textarea>
 
-		<p>Полный текст:<br><textarea name="text" cols="60" rows="5"><? if (isset($data["full_text"])) echo  htmlspecialchars($data["full_text"]) ?></textarea>
+		<p>Полный текст:<br><textarea name="text" cols="60" rows="5"><?php if (isset($data["full_text"])) echo  htmlspecialchars($data["full_text"]) ?></textarea>
 
 		<p><input type="submit" name="save" value="Сохранить">
 
 	</form>
-<?
+<?php
 
 include_once("../inc/admin_footer.php");
 
